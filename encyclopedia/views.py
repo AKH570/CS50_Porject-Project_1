@@ -6,10 +6,10 @@ import random
 
 
 def md_to_html(title):
-    all_content =util.get_entry(title)
+    content =util.get_entry(title)
     markdowner = markdown.Markdown()
-    if all_content is not None:
-        return markdowner.convert(all_content)
+    if content is not None:
+        return markdowner.convert(content)
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -43,12 +43,12 @@ def Search(request):
                 })
         else:
             List_Entries = util.list_entries()
-            new_search =[]
-            for entry in List_Entries:
-                if search_name.lower() in entry.lower(): 
-                    new_search.append(entry)
+            search_item =[]
+            for Entry in List_Entries:
+                if search_name.lower() in Entry.lower(): 
+                    search_item.append(Entry)
             return render(request,'encyclopedia/search.html',{
-                'new_search':new_search,
+                'search_item':search_item,
                 })
 def NewEntryPage(request):
         if request.method=='POST':
